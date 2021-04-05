@@ -105,7 +105,7 @@ module Corneal
 
       def create_rvm_gemset
         if @rvm
-          create_file(File.join(@app_path, '.ruby-version'), 'ruby-2.1.0')
+          create_file(File.join(@app_path, '.ruby-version'), 'ruby-2.6.0')
           create_file(File.join(@app_path, '.ruby-gemset'), @app_path)
 
           @bundle = false

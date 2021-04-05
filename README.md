@@ -1,5 +1,10 @@
 ![Corneal](http://thebrianemory.github.io/corneal/images/corneal-small.png)
 
+## What has changed
+
+Corinna here. Brian built an amazing generator but it needed a serious update for 2021. I removed the `database-cleaner` gem, pulled the version number out of SQLite and updated ActiveRecord to 5.2 (due to the compatibility issues with SQLite and ActiveRecord 6.1). I also added in Pry as a `rake console` as that's a common add in that we use at Flatiron School. Please feel free to change it if you prefer a different console, like tux. That's still in the gemfile! I also updated the ActiveRecord migration error to be compatible with the newer version of ActiveRecord. 
+
+
 ## Why this exists
 
 When I was creating my first major Sinatra project, [Cook This Way](https://github.com/thebrianemory/cook-this-way), while doing [Learn Verified](https://learn.co/with/thebrianemory), I was looking for a way to build a Sinatra skeleton similar to running
