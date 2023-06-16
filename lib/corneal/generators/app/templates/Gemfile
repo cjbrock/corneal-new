@@ -1,4 +1,7 @@
+# frozen_string_literal: true
 source 'http://rubygems.org'
+
+ruby '3.1.2'
 
 gem 'sinatra'
 gem 'activerecord', '~> 5.2'
