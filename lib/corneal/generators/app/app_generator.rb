@@ -31,7 +31,7 @@ module Corneal
 
       # Create empty directories
       def create_empty_directories
-        %w{config/initializers lib spec}.each do |dir|
+        %w{config/initializers config/locales lib spec}.each do |dir|
           empty_directory File.join(@app_path, dir)
         end
 
@@ -93,6 +93,12 @@ module Corneal
 
       def create_redis_initializer
         template("config/initializers/redis.rb", File.join(@app_path, "config/initializers/redis.rb")) if @redis
+      end
+
+      def create_config_locales
+        %w{README.md en.yml it.yml es.yml fr.yml de.yml}.each do |file|
+          copy_file("config/locales/#{file}", File.join(@app_path, "config/locales/#{file}"))
+        end
       end
 
       def create_capistrano_config

@@ -35,6 +35,7 @@ Directory structure:
 │       └── welcome.erb
 ├── config
 │   ├── initializers
+│   ├── locales
 │   └── environment.rb
 ├── db
 │   └── migrate
