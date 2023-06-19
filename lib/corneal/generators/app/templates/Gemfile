@@ -1,20 +1,47 @@
+# frozen_string_literal: true
 source 'http://rubygems.org'
 
+ruby '3.1.2'
+
 gem 'sinatra'
-gem 'activerecord', '~> 5.2'
+gem 'activerecord', '~> 6'
 gem 'sinatra-activerecord', :require => 'sinatra/activerecord'
+gem 'sinatra-contrib', require: false
+gem 'sinatra-cross_origin'
+# Environment as in Rails (Sinatra.production?, Sinatra.env)
+gem 'sinatra-env'
+gem 'sinatra-param'
 gem 'rake'
 gem 'require_all'
+gem 'config'
+gem 'i18n'
 gem 'sqlite3'
-gem 'thin'
-gem 'shotgun'
-gem 'pry'
+# Webservers
+gem 'puma' # , '~> 4.0.0'
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'bcrypt'
-gem 'tux'
 gem 'faker'
 
-group :test do
+group :development do
+  gem 'rack_web_console'
+  gem 'reek' # , '~> 5.5.0'
+  gem 'solargraph'
+end
+
+group :development, :test do
+  gem 'awesome_print'
+  gem 'better_errors'
+  gem 'dotenv'
+  gem 'faker'
+  gem 'parallel_tests'
+  gem 'pry'
+  gem 'pry-byebug'
+  gem 'pry-doc'
+  gem 'rack-test'
+  gem 'rubocop'
+  gem 'shotgun3'
+  gem 'sinatra-rake-routes', github: 'scicco/sinatra-rake-routes', branch: 'sinatra2.0'
+  gem 'tux'
   gem 'rspec'
   gem 'capybara'
-  gem 'rack-test'
 end
