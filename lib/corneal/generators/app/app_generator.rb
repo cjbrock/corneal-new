@@ -80,7 +80,7 @@ module Corneal
       end
 
       def create_db_config
-        template("config/db.yml", File.join(@app_path, "config/db.yml")) unless @database.empty?
+        template("config/database.yml", File.join(@app_path, "config/database.yml")) unless @database.empty?
       end
 
       def create_database_initializer
