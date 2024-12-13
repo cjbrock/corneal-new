@@ -1,6 +1,6 @@
 <% unless @database.empty? -%>
 require "yaml"
-settings = YAML::load_file("config/db.yml")
+settings = YAML::load_file("config/database.yml")
 <% if @database != 'mongo' -%>
 # Sequel Configuration
 require "sequel"

@@ -1,35 +1,45 @@
 # Sequel Database Configuration
-<% if @database == "sqlite" %>
+<% if @database == 'sqlite' %>
 development: "sqlite://db/development.sqlite3"
 test: "sqlite://db/test.sqlite3"
 production: "sqlite://db/production.sqlite3"
-<% elsif @database == "postgres" %>
+<% elsif @database == 'postgres' %>
 development: "postgres://<%= `whoami`.chop %>@localhost/<%= @name %>_development"
 test: "postgres://<%= `whoami`.chop %>@localhost/<%= @name %>_test"
 production: "postgres://<%= `whoami`.chop %>@localhost/<%= @name %>_production"
-<% elsif @database == "mysql" %>
+<% elsif @database == 'mysql' %>
 development: "mysql2://<%= `whoami`.chop %>@localhost/<%= @name %>_development"
 test: "mysql2://<%= `whoami`.chop %>@localhost/<%= @name %>_test"
 production: "mysql2://<%= `whoami`.chop %>@localhost/<%= @name %>_production"
-<% elsif @database == "mongo" %>
-development:
+<% elsif @database == 'sqlserver' || @database == 'mssql' %>
+default: &default
+  adapter: sqlserver
+  host: localhost
+  port: 1433
+  username: <%= `whoami`.chop %>
+<% elsif @database == 'mongo' %>
+default: &default
   host: localhost
   port: 27017
+<% else %>
+default: &default
+  adapter: <%= @database %>
+  host: localhost
+  port:
+<% end %>
+
+development:
+  <<: *default
   database: <%= @name %>_development
-  username:
   password:
 
 test:
-  host: localhost
-  port: 27017
+  <<: *default
   database: <%= @name %>_test
-  username:
   password:
 
 production:
-  host: localhost
-  port: 27017
+  <<: *default
   database: <%= @name %>_production
-  username:
   password:
-<% end %>
+

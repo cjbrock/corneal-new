@@ -1,3 +1,4 @@
 *.gem
 .bundle/install.log
 .DS_Store
+.directory

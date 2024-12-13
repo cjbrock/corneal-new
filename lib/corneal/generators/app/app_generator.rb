@@ -31,7 +31,7 @@ module Corneal
 
       # Create empty directories
       def create_empty_directories
-        %w{config/initializers lib spec}.each do |dir|
+        %w{config/initializers config/locales lib spec}.each do |dir|
           empty_directory File.join(@app_path, dir)
         end
 
@@ -80,7 +80,7 @@ module Corneal
       end
 
       def create_db_config
-        template("config/db.yml", File.join(@app_path, "config/db.yml")) unless @database.empty?
+        template("config/database.yml", File.join(@app_path, "config/database.yml")) unless @database.empty?
       end
 
       def create_database_initializer
@@ -95,6 +95,12 @@ module Corneal
         template("config/initializers/redis.rb", File.join(@app_path, "config/initializers/redis.rb")) if @redis
       end
 
+      def create_config_locales
+        %w{README.md en.yml it.yml es.yml fr.yml de.yml}.each do |file|
+          copy_file("config/locales/#{file}", File.join(@app_path, "config/locales/#{file}"))
+        end
+      end
+
       def create_capistrano_config
         if @capistrano
           inside(@app_path) do
@@ -105,7 +111,7 @@ module Corneal
 
       def create_rvm_gemset
         if @rvm
-          create_file(File.join(@app_path, '.ruby-version'), 'ruby-2.6.0')
+          create_file(File.join(@app_path, '.ruby-version'), 'ruby-3.1.2')
           create_file(File.join(@app_path, '.ruby-gemset'), @app_path)
 
           @bundle = false
